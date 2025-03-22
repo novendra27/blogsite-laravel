@@ -17,18 +17,13 @@ class Article extends Model
 
     protected $fillable = ['id_user', 'id_category', 'title', 'slug', 'content', 'photo'];
 
-    public function user(): BelongsTo
+    public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'id_category');
-    }
-
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

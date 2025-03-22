@@ -19,10 +19,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $name = fake()->unique()->name();
+        $uuid = Str::uuid();
         return [
-            'id' => Str::uuid(), // UUID
+            'id' => $uuid, // UUID
             'username' => Str::slug($name, ''), // Username tanpa spasi
             'name' => $name,
+            'slug' => Str::slug($name) . '-' . substr($uuid, -3), // Slug
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('password'), // Hash password
             'role' => 'user', // Role default user

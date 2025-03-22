@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->default(Str::uuid()); // UUID Primary Key
             $table->string('username')->unique();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'user', 'author'])->default('user'); // Peran pengguna
