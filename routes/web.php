@@ -1,9 +1,17 @@
 <?php
 
+use App\Models\User;
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages/home', ['title' => 'Home Page']);
+    return view('pages/home', [
+        'title' => 'Home Page',
+        'articles' => Article::with('author')->get(),
+        'categories' => Category::take(7)->get(),
+        'users' => User::where('role', 'author')->take(5)->get(),
+    ]);
 });
 
 Route::get('/blog', function () {
